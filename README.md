@@ -27,7 +27,7 @@ npm i --save-dev tslint-import-rules
 ## Rules
 All rules start from the prefix `tir-` (TSLint Import Rules) to prevent name collisions.
 
-### `tir-no-newline-between-imports`
+### `tir-no-empty-line-between-imports`
 Prevents having empty lines between import declarations.
 
 #### Valid
