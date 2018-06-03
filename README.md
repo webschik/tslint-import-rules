@@ -6,8 +6,6 @@ Set of TSLint rules that help validate proper imports.
 [![npm](https://img.shields.io/npm/v/tslint-import-rules.svg)](https://www.npmjs.com/package/tslint-import-rules)
 [![npm](https://img.shields.io/npm/l/tslint-import-rules.svg)](https://www.npmjs.com/package/tslint-import-rules)
 
-> TSLint security rules
-
 Inspired by [eslint-plugin-import](https://github.com/benmosher/eslint-plugin-import)
 
 ## How to use
