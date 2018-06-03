@@ -4,7 +4,7 @@
   "description": "Set of TSLint rules that help validate proper imports.",
   "main": "./index.js",
   "scripts": {
-    "test": "test",
+    "test": "npm run lint && npm run build && ./node_modules/.bin/tslint --test test/rules/**/**/**",
     "build": "rm -rf dist && ./node_modules/.bin/tsc",
     "lint": "./node_modules/.bin/tslint \"src/**/*.ts\"",
     "lock": "npm shrinkwrap --no-optional"

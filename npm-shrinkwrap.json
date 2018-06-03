@@ -4,6 +4,12 @@
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
+    "@types/node": {
+      "version": "10.3.0",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-10.3.0.tgz",
+      "integrity": "sha512-hWzNviaVFIr1TqcRA8ou49JaSHp+Rfabmnqg2kNvusKqLhPU0rIsGPUj5WJJ7ld4Bb7qdgLmIhLfCD1qS08IVA==",
+      "dev": true
+    },
     "ansi-regex": {
       "version": "2.1.1",
       "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-2.1.1.tgz",
@@ -121,6 +127,24 @@
       "resolved": "https://registry.npmjs.org/diff/-/diff-3.5.0.tgz",
       "integrity": "sha512-A46qtFgd+g7pDZinpnwiRJtxbC1hpgf0uzP3iG89scHk0AUC7A1TGxf5OiiOUv/JMZR8GOt8hL900hV0bOy5xA=="
     },
+    "doctrine": {
+      "version": "0.7.2",
+      "resolved": "https://registry.npmjs.org/doctrine/-/doctrine-0.7.2.tgz",
+      "integrity": "sha1-fLhgNZujvpDgQLJrcpzkv6ZUxSM=",
+      "dev": true,
+      "requires": {
+        "esutils": "^1.1.6",
+        "isarray": "0.0.1"
+      },
+      "dependencies": {
+        "esutils": {
+          "version": "1.1.6",
+          "resolved": "https://registry.npmjs.org/esutils/-/esutils-1.1.6.tgz",
+          "integrity": "sha1-wBzKqa5LiXxtDD4hCuUvPHqEQ3U=",
+          "dev": true
+        }
+      }
+    },
     "escape-string-regexp": {
       "version": "1.0.5",
       "resolved": "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz",
@@ -180,6 +204,12 @@
       "version": "2.0.3",
       "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.3.tgz",
       "integrity": "sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4="
+    },
+    "isarray": {
+      "version": "0.0.1",
+      "resolved": "https://registry.npmjs.org/isarray/-/isarray-0.0.1.tgz",
+      "integrity": "sha1-ihis/Kmo9Bd+Cav8YDiTmwXR7t8=",
+      "dev": true
     },
     "js-tokens": {
       "version": "3.0.2",
@@ -287,6 +317,34 @@
         "semver": "^5.3.0",
         "tslib": "^1.8.0",
         "tsutils": "^2.12.1"
+      }
+    },
+    "tslint-config-webschik": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/tslint-config-webschik/-/tslint-config-webschik-1.0.0.tgz",
+      "integrity": "sha512-XkMGzEzm5UCCRPqSlg1PQYiVeSyXVnrGi18JV/v5ze7ovafHJSLI8cnBN+QPDy8U8JcUa+cdDZSKqczG/q0B5g==",
+      "dev": true,
+      "requires": {
+        "tslint-eslint-rules": "^4.1.1"
+      }
+    },
+    "tslint-eslint-rules": {
+      "version": "4.1.1",
+      "resolved": "https://registry.npmjs.org/tslint-eslint-rules/-/tslint-eslint-rules-4.1.1.tgz",
+      "integrity": "sha1-fDDniC8mvCdr/5HSOEl1xp2viLo=",
+      "dev": true,
+      "requires": {
+        "doctrine": "^0.7.2",
+        "tslib": "^1.0.0",
+        "tsutils": "^1.4.0"
+      },
+      "dependencies": {
+        "tsutils": {
+          "version": "1.9.1",
+          "resolved": "https://registry.npmjs.org/tsutils/-/tsutils-1.9.1.tgz",
+          "integrity": "sha1-ufmrROVa+WgYMdXyjQrur1x1DLA=",
+          "dev": true
+        }
       }
     },
     "tsutils": {

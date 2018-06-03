@@ -1,0 +1,7 @@
+import * as bar from 'bar'
+~~~~~~~~~~~~~~~~~~~~~~~~~~ [Unexpected empty line between import declarations]
+
+import * as foo from 'foo'
+import * as foo2 from 'foo2'
+
+const FOO = 'BAR';

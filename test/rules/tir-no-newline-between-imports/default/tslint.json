@@ -1,0 +1,6 @@
+{
+  "rulesDirectory": "../../../../dist/rules",
+  "rules": {
+    "tir-no-newline-between-imports": true
+  }
+}

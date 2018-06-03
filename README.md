@@ -23,3 +23,102 @@ npm i --save-dev tslint-import-rules
   "extends": ["tslint-import-rules"]
 }
 ```
+
+## Rules
+All rules start from the prefix `tir-` (TSLint Import Rules) to prevent name collisions.
+
+### `tir-no-newline-between-imports`
+Prevents having empty lines between import declarations.
+
+#### Valid
+```js
+import * as bar from 'bar';
+import * as foo from 'foo';
+
+const FOO = 'BAR';
+```
+
+
+#### Invalid
+```js
+import * as bar from 'bar';
+
+import * as foo from 'foo';
+
+const FOO = 'BAR';
+```
+
+### `tir-newline-after-import`
+Enforces having one or more empty lines after the last top-level import statement.
+This rule has one option, `count` which sets the number of newlines that are enforced after the last top-level import statement or require call.
+This option defaults to 1.
+
+### Usage
+#### Disable empty lines after import
+```json
+    {
+      "tir-newline-after-import": [true, "never"]
+    }
+```
+
+**Valid:**
+```js
+import * as bar from 'bar';
+import * as foo from 'foo';
+const FOO = 'BAR';
+```
+
+**Invalid:**
+```js
+import * as bar from 'bar';
+import * as foo from 'foo';
+
+const FOO = 'BAR';
+```
+
+#### Force 1 empty line after import
+```json
+    {
+      "tir-newline-after-import": [true]
+    }
+```
+
+**Valid:**
+```js
+import * as bar from 'bar';
+import * as foo from 'foo';
+
+const FOO = 'BAR';
+```
+
+**Invalid:**
+```js
+import * as bar from 'bar';
+import * as foo from 'foo';
+const FOO = 'BAR';
+```
+
+```js
+import * as bar from 'bar';
+import * as foo from 'foo';
+
+
+const FOO = 'BAR';
+```
+
+#### Force 3 empty lines after import
+```json
+    {
+      "tir-newline-after-import": [true, "always", {"count": 3}]
+    }
+```
+
+**Valid:**
+```js
+import * as bar from 'bar';
+import * as foo from 'foo';
+
+
+
+const FOO = 'BAR';
+```
