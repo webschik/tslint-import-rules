@@ -18,7 +18,7 @@ npm i --save-dev tslint-import-rules
 
 ```json
 {
-  "extends": ["tslint-import-rules"]
+  "rulesDirectory": ["node_modules/tslint-import-rules/dist/rules"]
 }
 ```
 
