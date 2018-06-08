@@ -1,6 +1,6 @@
 {
   "name": "tslint-import-rules",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Set of TSLint rules that help validate proper imports.",
   "main": "./index.js",
   "scripts": {

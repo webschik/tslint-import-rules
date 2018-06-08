@@ -1,0 +1,15 @@
+import {foo} from 'foo'
+~~~~~~~~~~~~~~~~~~~~~~~~~~ [Expected 1 space after '{']
+~~~~~~~~~~~~~~~~~~~~~~~~~~ [Expected 1 space before '}']
+import { foo} from 'foo'
+~~~~~~~~~~~~~~~~~~~~~~~~~~ [Expected 1 space before '}']
+import {foo } from 'foo'
+~~~~~~~~~~~~~~~~~~~~~~~~~~ [Expected 1 space after '{']
+import {  foo   } from 'foo'
+~~~~~~~~~~~~~~~~~~~~~~~~~~ [Unexpected 1 space after '{']
+~~~~~~~~~~~~~~~~~~~~~~~~~~ [Unexpected 2 spaces before '}']
+import {
+    foo1,
+    foo2
+} from 'foo'
+const FOO = 'BAR'
