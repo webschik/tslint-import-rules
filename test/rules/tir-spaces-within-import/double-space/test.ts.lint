@@ -1,13 +1,13 @@
 import { foo } from 'foo'
-~~~~~~~~~~~~~~~~~~~~~~~~~~ [Expected 1 space after '{']
-~~~~~~~~~~~~~~~~~~~~~~~~~~ [Expected 1 space before '}']
+       ~~~~~~~            [Expected 1 space after '{']
+       ~~~~~~~            [Expected 1 space before '}']
 import {  foo} from 'foo'
-~~~~~~~~~~~~~~~~~~~~~~~~~~ [Expected 2 spaces before '}']
+       ~~~~~~~            [Expected 2 spaces before '}']
 import {foo  } from 'foo'
-~~~~~~~~~~~~~~~~~~~~~~~~~~ [Expected 2 space after '{']
+       ~~~~~~~            [Expected 2 spaces after '{']
 import {   foo   } from 'foo'
-~~~~~~~~~~~~~~~~~~~~~~~~~~ [Unexpected 1 space after '{']
-~~~~~~~~~~~~~~~~~~~~~~~~~~ [Unexpected 1 space before '}']
+       ~~~~~~~~~~~            [Unexpected 1 space after '{']
+       ~~~~~~~~~~~            [Unexpected 1 space before '}']
 import {
     foo1,
     foo2
