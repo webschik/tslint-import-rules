@@ -25,8 +25,78 @@ npm i --save-dev tslint-import-rules
 ## Rules
 All rules start from the prefix `tir-` (TSLint Import Rules) to prevent name collisions.
 
+### `tir-spaces-within-import`
+Controls spaces within import clauses
+
+#### Usage
+##### Disable spaces within import
+```json
+    {
+      "tir-spaces-within-import": [true, "never"]
+    }
+```
+
+**Valid:**
+```js
+import {bar} from 'bar';
+import {
+    foo1,
+    foo2
+} from 'foo';
+```
+
+**Invalid:**
+```js
+import { bar } from 'bar';
+```
+
+##### Enable spaces within import
+```json
+    {
+      "tir-spaces-within-import": [true]
+    }
+```
+
+**Valid:**
+```js
+import { bar } from 'bar';
+import {
+    foo1,
+    foo2
+} from 'foo';
+```
+
+**Invalid:**
+```js
+import {bar} from 'bar';
+```
+
+##### Enable custom spaces count within import
+```json
+    {
+      "tir-spaces-within-import": [true, "always", {"count": 2}]
+    }
+```
+
+**Valid:**
+```js
+import {  bar  } from 'bar';
+import {
+    foo1,
+    foo2
+} from 'foo';
+```
+
+**Invalid:**
+```js
+import {foo} from 'foo';
+import { bar } from 'bar';
+```
+
 ### `tir-no-empty-line-between-imports`
 Prevents having empty lines between import declarations.
+This rule has one option, `count` which sets the number of spaces.
+This option defaults to 1.
 
 #### Valid
 ```js
@@ -51,8 +121,8 @@ Enforces having one or more empty lines after the last top-level import statemen
 This rule has one option, `count` which sets the number of newlines that are enforced after the last top-level import statement or require call.
 This option defaults to 1.
 
-### Usage
-#### Disable empty lines after import
+#### Usage
+##### Disable empty lines after import
 ```json
     {
       "tir-newline-after-import": [true, "never"]
@@ -74,7 +144,7 @@ import * as foo from 'foo';
 const FOO = 'BAR';
 ```
 
-#### Force 1 empty line after import
+##### Force 1 empty line after import
 ```json
     {
       "tir-newline-after-import": [true]
@@ -104,7 +174,7 @@ import * as foo from 'foo';
 const FOO = 'BAR';
 ```
 
-#### Force 3 empty lines after import
+##### Force 3 empty lines after import
 ```json
     {
       "tir-newline-after-import": [true, "always", {"count": 3}]
