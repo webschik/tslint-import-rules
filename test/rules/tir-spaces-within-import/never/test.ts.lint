@@ -9,4 +9,8 @@ import {
     foo1,
     foo2
 } from 'foo'
+import * as foo, {test} from 'foo';
+import foo, { test} from 'foo';
+       ~~~~~~~~~~~~             [Unexpected 1 space after '{']
+import * as bar from 'foo';
 const FOO = 'BAR'

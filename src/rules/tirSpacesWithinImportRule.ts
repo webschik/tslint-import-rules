@@ -30,14 +30,12 @@ class RuleWalker extends Lint.RuleWalker {
     }
 
     private testCharAndCollectSpaces (
+        ch: string,
         node: ts.ImportClause,
         expectedSpacesCount: number,
         actualSpacesCount: number,
-        charIndex: number,
         beforeBracket?: boolean
     ): number|undefined {
-        const ch: string = this.sourceText[charIndex];
-
         if (ch === '\n') {
             if (actualSpacesCount) {
                 this.addSpacesFailure(node, actualSpacesCount, beforeBracket);
@@ -68,22 +66,36 @@ class RuleWalker extends Lint.RuleWalker {
             const start: number = importClause.getStart();
             const end: number = importClause.getEnd();
             let spacesCount: number|undefined = 0;
+            let hasOpenedBracket: boolean = false;
+            let hasClosedBracket: boolean = false;
 
-            for (let i = start + 1; i < end; i++) {
-                spacesCount = this.testCharAndCollectSpaces(importClause, count, spacesCount, i);
+            for (let i = start; i < end; i++) {
+                const ch: string = this.sourceText[i];
 
-                if (spacesCount === undefined) {
-                    break;
+                if (!hasOpenedBracket && ch === '{') {
+                    hasOpenedBracket = true;
+                } else if (hasOpenedBracket) {
+                    spacesCount = this.testCharAndCollectSpaces(ch, importClause, count, spacesCount);
+
+                    if (spacesCount === undefined) {
+                        break;
+                    }
                 }
             }
 
             spacesCount = 0;
 
-            for (let i = end - 2; i > start; i--) {
-                spacesCount = this.testCharAndCollectSpaces(importClause, count, spacesCount, i, true);
+            for (let i = end - 1; i > start; i--) {
+                const ch: string = this.sourceText[i];
 
-                if (spacesCount === undefined) {
-                    break;
+                if (!hasClosedBracket && ch === '}') {
+                    hasClosedBracket = true;
+                } else if (hasClosedBracket) {
+                    spacesCount = this.testCharAndCollectSpaces(ch, importClause, count, spacesCount, true);
+
+                    if (spacesCount === undefined) {
+                        break;
+                    }
                 }
             }
         }
