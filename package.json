@@ -1,12 +1,12 @@
 {
   "name": "tslint-import-rules",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Set of TSLint rules that help validate proper imports.",
   "main": "./index.js",
   "scripts": {
-    "test": "npm run lint && npm run build && ./node_modules/.bin/tslint --test test/rules/**/**/**",
+    "pretest": "npm run build",
+    "test": "./node_modules/.bin/tslint --test test/rules/**/**/**",
     "build": "rm -rf dist && ./node_modules/.bin/tsc",
-    "lint": "./node_modules/.bin/tslint \"src/**/*.ts\"",
     "lock": "npm shrinkwrap --no-optional"
   },
   "repository": {
@@ -26,12 +26,11 @@
   },
   "homepage": "https://github.com/webschik/tslint-import-rules#readme",
   "devDependencies": {
-    "@types/node": "^10.3.0",
-    "tslint-config-webschik": "^1.0.0"
+    "@types/node": "^10.3.0"
   },
   "dependencies": {
-    "tslib": "^1.9.2",
-    "tslint": "^5.10.0",
-    "typescript": "^2.9.1"
+    "tslib": "^1.9.3",
+    "tslint": "^5.14.0",
+    "typescript": "^3.1.1"
   }
 }

@@ -1,45 +1,44 @@
-import * as ts from 'typescript';
 import * as Lint from 'tslint';
+import * as ts from 'typescript';
 
 const nonSpaceSymbolPattern: RegExp = /\S/;
 
 export class Rule extends Lint.Rules.AbstractRule {
     apply (sourceFile: ts.SourceFile): Lint.RuleFailure[] {
-        return this.applyWithWalker(new RuleWalker(sourceFile, this.getOptions()));
+        return this.applyWithFunction(sourceFile, walk);
     }
 }
 
-class RuleWalker extends Lint.RuleWalker {
-    private sourceText: string;
-    private sourceTextLength: number;
+function walk(ctx: Lint.WalkContext<void>) {
+    const {sourceFile} = ctx;
+    const sourceText: string = sourceFile.getText();
+    const sourceTextLength: number = sourceFile.getEnd();
 
-    constructor (sourceFile: ts.SourceFile, options: Lint.IOptions) {
-        super(sourceFile, options);
+    function visitNode (node: ts.Node): void {
+        if (node.kind === ts.SyntaxKind.ImportDeclaration) {
+            let isAfterImportDeclaration: boolean = false;
+            let afterNewLineSymbolsCount: number = 0;
 
-        this.sourceText = sourceFile.getText();
-        this.sourceTextLength = sourceFile.getEnd();
-    }
+            for (let i = node.getEnd(); i < sourceTextLength; i++) {
+                const ch: string = sourceText[i];
 
-    visitImportDeclaration (node: ts.ImportDeclaration) {
-        const {sourceText, sourceTextLength} = this;
-        let isAfterImportDeclaration: boolean = false;
-        let afterNewLineSymbolsCount: number = 0;
-
-        for (let i = node.getEnd(); i < sourceTextLength; i++) {
-            const ch: string = sourceText[i];
-
-            if (ch === '\n') {
-                afterNewLineSymbolsCount++;
-            } else if (nonSpaceSymbolPattern.test(ch)) {
-                isAfterImportDeclaration = sourceText.slice(i, i + 6) === 'import';
-                break;
+                if (ch === '\n') {
+                    afterNewLineSymbolsCount++;
+                } else if (nonSpaceSymbolPattern.test(ch)) {
+                    isAfterImportDeclaration = sourceText.slice(i, i + 6) === 'import';
+                    break;
+                }
             }
+
+            if (isAfterImportDeclaration && (afterNewLineSymbolsCount > 1)) {
+                ctx.addFailureAtNode(node, 'Unexpected empty line between import declarations');
+            }
+
+            return;
         }
 
-        if (isAfterImportDeclaration && (afterNewLineSymbolsCount > 1)) {
-            this.addFailureAtNode(node, 'Unexpected empty line between import declarations');
-        }
-
-        super.visitImportDeclaration(node);
+        return ts.forEachChild(node, visitNode);
     }
+
+    return ts.forEachChild(sourceFile, visitNode);
 }
